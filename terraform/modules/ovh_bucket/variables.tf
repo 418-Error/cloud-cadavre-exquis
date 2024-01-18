@@ -25,7 +25,16 @@ variable "bucket_name" {
   default = "tf-state"
 }
 
+variable "tenant_name" {
+  type   = string
+  description = "Tenant name"
+  default = "418erreur"
+}
+
 variable "bucket_label" {
-  type = map(string)
+    type = object({
+      name = string
+      tenant = string
+    })
   description = "Bucket label"
 }

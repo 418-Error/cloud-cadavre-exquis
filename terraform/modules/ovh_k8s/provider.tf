@@ -1,14 +1,14 @@
 terraform {
   required_providers {
     ovh = {
-      source  = "ovh/ovh"
+      source = "ovh/ovh"
     }
   }
 }
 
 provider "ovh" {
-  endpoint           = "ovh-eu"
-  application_key    = "<your_access_key>"
-  application_secret = "<your_application_secret>"
-  consumer_key       = "<your_consumer_key>"
+  endpoint           = var.ovh_endpoint
+  application_key    = var.ovh_conf[terraform.workspace].application_key
+  application_secret = var.ovh_conf[terraform.workspace].application_secret
+  consumer_key       = var.ovh_conf[terraform.workspace].consumer_key
 }
