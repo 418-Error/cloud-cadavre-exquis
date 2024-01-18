@@ -8,6 +8,12 @@ variable ovh_conf {
   description = "OVH credentials"
 }
 
+variable tenant_name {
+  type = string
+  description = "Name of the tenant"
+  default = "418erreur"
+}
+
 variable ovh_endpoint {
   type = string
   description = "OVH endpoint"
