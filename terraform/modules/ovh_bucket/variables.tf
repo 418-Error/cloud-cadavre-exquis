@@ -24,3 +24,8 @@ variable "bucket_name" {
   description = "Bucket name"
   default = "tf-state"
 }
+
+variable "bucket_label" {
+  type = map(string)
+  description = "Bucket label"
+}
