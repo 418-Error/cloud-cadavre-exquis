@@ -11,7 +11,13 @@ variable ovh_region {
     default = "gra"
 }
 
-variable version {
+variable ovh_cluster_region {
+    type = string
+    description = "OVH region"
+    default = "GRA7"
+}
+
+variable cluster_version {
     type = string
     description = "Cluster version"
 }
@@ -30,7 +36,7 @@ variable flavor_name {
 }
 
 variable nodes {
-    type = string
+    type = number
     description = "Number of nodes"
     default = 1
 }
@@ -39,4 +45,20 @@ variable nodes {
 
 variable service_name {
   type = string
+}
+
+variable ovh_conf {
+  type = map(object({
+    application_key = string
+    application_secret = string
+    consumer_key = string
+    project_id = string
+    }))
+  description = "OVH credentials"
+}
+
+variable ovh_endpoint {
+  type = string
+  description = "OVH endpoint"
+  default = "ovh-eu"
 }
