@@ -4,6 +4,10 @@ terraform {
       source = "fluxcd/flux"
       version = "1.2.2"
     }
+    github = {
+      source  = "integrations/github"
+      version = ">=5.18.0"
+    }
   }
 }
 
@@ -15,6 +19,11 @@ provider "flux" {
     client_key = var.cluster_client_key
   }
   git = {
-    url = var.git_url
+    url = "ssh://git@github.com/${var.github_org}/${var.github_repo}.git"
+    ssh = {
+      username    = "git"
+      private_key = tls_private_key.flux.private_key_pem
+    }
+    branch = "master"
   }
 }

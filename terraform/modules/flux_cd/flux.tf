@@ -1,4 +1,4 @@
 resource "flux_bootstrap_git" "this" {
-  path = "helm"
-  manifests_path = "${var.git_url}/helm"
+  depends_on = [github_repository_deploy_key.this]
+  path = "cluster/my-cluster"
 }

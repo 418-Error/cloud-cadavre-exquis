@@ -19,3 +19,18 @@ variable ovh_endpoint {
   description = "OVH endpoint"
   default = "ovh-eu"
 }
+
+variable github_access_token {
+  type = string
+  description = "Github access token"
+}
+
+variable github_org {
+  type = string
+  description = "Github organization"
+}
+
+variable github_repo {
+  type = string
+  description = "Github repository"
+}
