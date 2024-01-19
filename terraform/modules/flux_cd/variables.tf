@@ -22,3 +22,18 @@ variable cluster_client_key {
     type = string
     description = "Cluster client key"
 }
+
+variable github_token {
+    type = string
+    description = "Github token"
+}
+
+variable github_org {
+    type = string
+    description = "Github organization"
+}
+
+variable github_repo {
+    type = string
+    description = "Github repository"
+}
