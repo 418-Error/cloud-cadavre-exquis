@@ -1,0 +1,44 @@
+postgresql:
+  credentialsSecret: &postgresqlCredentialsSecret "infrastructure-postgresql-postgres-creds"
+  host: &postgresqlCredentialsHost "infrastructure-postgresql-primary"
+
+dispatcher:
+  replica: 2
+  image:
+    repository: docker.io/fteychene
+    name: cloud-cadavre-exquis-dispatcher
+    tag: 1.0-SNAPSHOT
+  domain: cadavre-exquis.kube
+
+
+
+register:
+  image:
+    repository: docker.io/fteychene
+    name: cloud-cadavre-exquis-register
+    tag: 1.0-SNAPSHOT
+  postgresql:
+    host: *postgresqlCredentialsHost
+    credentialsSecretName: *postgresqlCredentialsSecret
+    databaseName: "register"
+
+subject:
+  replica: 2
+  image:
+    repository: docker.io/fteychene
+    name: cloud-cadavre-exquis-provider
+    tag: 1.0-SNAPSHOT
+
+verb:
+  replica: 1
+  image:
+    repository: docker.io/fteychene
+    name: cloud-cadavre-exquis-provider
+    tag: 1.0-SNAPSHOT
+
+adjective:
+  replica: 2
+  image:
+    repository: docker.io/fteychene
+    name: cloud-cadavre-exquis-provider
+    tag: 1.0-SNAPSHOT
