@@ -1,14 +1,15 @@
 terraform {
   required_providers {
-    ovh = {
-      source = "ovh/ovh"
+    scaleway = {
+      source = "scaleway/scaleway"
+      version = "2.38.0"
     }
   }
 }
 
-provider "ovh" {
-  endpoint           = var.ovh_endpoint
-  application_key    = var.ovh_conf[terraform.workspace].application_key
-  application_secret = var.ovh_conf[terraform.workspace].application_secret
-  consumer_key       = var.ovh_conf[terraform.workspace].consumer_key
+provider "scaleway" {
+  access_key = var.access_key
+  secret_key = var.secret_key
+  project_id = var.project_id
+  region = var.region
 }

@@ -1,27 +1,21 @@
-variable ovh_conf {
-  type = map(object({
-    application_key = string
-    application_secret = string
-    consumer_key = string
-    project_id = string
-    }))
-  description = "OVH credentials"
+variable "project_id" {
+  description = "The ID of the project in which the bucket will be created"
+  type        = string
 }
 
-variable tenant_name {
-  type = string
-  description = "Name of the tenant"
-  default = "418erreur"
+variable "access_key" {
+  description = "The access key of the Scaleway account"
+  type        = string
 }
 
-variable ovh_endpoint {
-  type = string
-  description = "OVH endpoint"
-  default = "ovh-eu"
+variable "secret_key" {
+  description = "The secret key of the Scaleway account"
+  type        = string
 }
 
-variable ovh_region {
-  type = string
-  description = "OVH region"
-  default = "gra"
+variable "region" {
+  description = "The region in which the bucket will be created"
+  type        = string
+  default     = "fr-par"
 }
+
