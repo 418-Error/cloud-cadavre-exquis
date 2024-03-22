@@ -19,3 +19,12 @@ variable "region" {
   default     = "fr-par"
 }
 
+variable "email" {
+  description = "The email of the Scaleway account"
+  type = string
+}
+
+variable "organization_id" {
+  description = "The ID of the organization in which the bucket will be created"
+  type = string
+}

@@ -1,10 +1,12 @@
-terraform {
-  backend "s3" {
-    bucket = "tfstate-bucket-prod"
-    key    = "vpc.tfstate"
+data "terraform_remote_state" "vpc_state" {
+  backend = "s3"
+  workspace = terraform.workspace
+  config = {
+    bucket = "tfstate-bucket-${terraform.workspace}"
+    key = "vpc.tfstate"
     region = "fr-par"
     endpoints = {
-     s3: "https://s3.fr-par.scw.cloud"
+        s3 = "https://s3.fr-par.scw.cloud"
     }
     skip_credentials_validation = true
     skip_requesting_account_id = true

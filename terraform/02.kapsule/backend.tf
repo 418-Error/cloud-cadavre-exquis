@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "tfstate-bucket-prod"
-    key    = "vpc.tfstate"
+    key    = "kapsule.tfstate"
     region = "fr-par"
     endpoints = {
      s3: "https://s3.fr-par.scw.cloud"

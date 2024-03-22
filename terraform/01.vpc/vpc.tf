@@ -12,7 +12,7 @@ resource "scaleway_vpc_private_network" "private_network" {
   region = var.region
 
   ipv4_subnet {
-    subnet = "192.168.0.0/24"
+    subnet = "192.168.0.0/22"
   }
 
   tags = [
