@@ -4,7 +4,7 @@ module "kapsule_cluster" {
     node_pool =  {
       max_size = 3
       min_size = 1
-      size = 1
+      size = 2
       name = "main-pool"
       node_type = "DEV1-M"
       tags = ["env=${terraform.workspace}", "team=418erreur"]

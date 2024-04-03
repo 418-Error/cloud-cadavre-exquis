@@ -18,3 +18,4 @@ spec:
     warn: true
   sourceRepos:
     - https://github.com/418-Error/cloud-cadavre-exquis
+    - https://charts.external-secrets.io

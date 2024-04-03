@@ -42,3 +42,18 @@ adjective:
     repository: docker.io/fteychene
     name: cloud-cadavre-exquis-provider
     tag: 1.0-SNAPSHOT
+
+externalSecrets:
+  - name: "infrastructure-postgresql-postgres-creds"
+    secretStoreRef: scaleway-sm-secret-store-developer
+    refreshInverval: 60s
+    secret:
+      target:
+        name: "infrastructure-postgresql-postgres-creds"
+        creationPolicy: Owner
+      dataFrom:
+      - extract:
+          conversionStrategy: Default
+          decodingStrategy: None
+          key: f640d5de-440a-412f-8805-9eb70469eaf8
+
