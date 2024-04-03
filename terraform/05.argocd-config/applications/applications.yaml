@@ -8,6 +8,7 @@ metadata:
 spec:
   destination:
     name: in-cluster
+    namespace: cloud-cadavre-exquis
   syncPolicy:
     automated:
       prune: true
@@ -15,5 +16,26 @@ spec:
   project: cloud-cadavre-exquis
   source:
     path: k8s/apps
+    repoURL: https://github.com/418-Error/cloud-cadavre-exquis
+    targetRevision: implements/helm
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-secrets
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/instance: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: system-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  project: cloud-cadavre-exquis
+  source:
+    path: k8s/system/external-secrets
     repoURL: https://github.com/418-Error/cloud-cadavre-exquis
     targetRevision: implements/helm
