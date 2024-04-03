@@ -17,7 +17,7 @@ spec:
   source:
     path: k8s/apps
     repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-    targetRevision: implements/helm
+    targetRevision: feat/scaleway
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
