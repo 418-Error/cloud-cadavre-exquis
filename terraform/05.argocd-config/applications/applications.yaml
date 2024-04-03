@@ -35,7 +35,14 @@ spec:
       prune: true
       selfHeal: true
   project: cloud-cadavre-exquis
-  source:
-    path: k8s/system/external-secrets
-    repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-    targetRevision: implements/helm
+  sources:
+    - chart: external-secrets
+      repoURL: https://charts.external-secrets.io
+      targetRevision: 0.9.7
+      helm:
+        releaseName: external-secrets
+        valueFiles:
+          - $values/k8s/system/external-secrets/values.yaml
+    - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
+      targetRevision: feat/scaleway
+      ref: values
