@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "tfstate-bucket-prod"
-    key    = "terraform.tfstate"
+    bucket = "418erreur-tfstate-bucket-prod"
+    key    = "rdb.tfstate"
     region = "fr-par"
     endpoints = {
      s3: "https://s3.fr-par.scw.cloud/"

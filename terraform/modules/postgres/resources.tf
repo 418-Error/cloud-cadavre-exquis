@@ -30,4 +30,8 @@ resource "scaleway_rdb_instance" "instance" {
   user_name      = var.user_name
   password       = random_password.db_password.result
   volume_type    = "lssd"
+  private_network {
+    pn_id = var.vpc_private_network_id
+    enable_ipam = true
+  }
 }

@@ -21,3 +21,7 @@ variable "region" {
   default     = "fr-par"
 }
 
+variable "vpc_private_network_id" {
+  description = "The ID of the private network to use for the database"
+  type        = string
+}
