@@ -4,7 +4,7 @@ resource "kubernetes_namespace" "argocd" {
   }
 }
 
-resource "helm_release" "argocd-chart"{
+resource "helm_release" "argocd-chart" {
     name = "argocd"
     repository = "https://argoproj.github.io/argo-helm"
     chart = "argo-cd"
@@ -14,4 +14,20 @@ resource "helm_release" "argocd-chart"{
     values = [
         file("${path.module}/values.yaml")
     ]
+    set {
+        name = "server.ingress.hosts[0]"
+        value = var.argocd_host
+    }
+    set {
+        name = "server.ingress.tls[0].hosts[0]"
+        value = var.argocd_host
+    }
+    set{
+        name = "server.ingress.tls[0].secretName"
+        value = var.argocd_secret_tls
+    }
+    set {
+        name = "configs.cm.url"
+        value = "https://${var.argocd_host}"
+    }
 }

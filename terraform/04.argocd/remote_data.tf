@@ -1,9 +1,9 @@
-data "terraform_remote_state" "vpc_state" {
+data "terraform_remote_state" "kapsule_state" {
   backend = "s3"
   workspace = terraform.workspace
   config = {
     bucket = "418erreur-tfstate-bucket-${terraform.workspace}"
-    key = "vpc.tfstate"
+    key = "kapsule.tfstate"
     region = "fr-par"
     endpoints = {
         s3 = "https://s3.fr-par.scw.cloud"

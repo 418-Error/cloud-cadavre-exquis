@@ -1,12 +1,199 @@
 controller:
-  replicas: 1
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+   requests:
+     cpu: 457m
+     memory: 889Mi
+   limits:
+     memory: 1000Mi
+
+dex:
+  resources: 
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+configs:
+  secret:
+    extra:
+      accounts.devaccess.password: "$2a$10$1sp60r8ris6U.jR.aAvgheh9Xy9in9PIT8ICc1AfIJfMLposItZAy"
+  params:
+    server.insecure: true
+  rbac:
+    policy.default: role:readonly
+    policy.csv: |
+      p, role:developpers, exec, create, */*, allow
+      p, role:developpers, applications, action/batch/CronJob/create-job, apps/*, allow
+      p, role:developpers, applications, get, */*, allow
+      p, role:developpers, applications, delete, apps/*, allow
+      p, role:ci, applications, sync, apps/*, allow
+      p, role:ci, applications, update, apps/*, allow
+      p, role:ci, applications, get, apps/*, allow
+      g, devaccess, role:developpers
+      g, gitlab, role:ci
+  cm:
+    create: true
+    application.instanceLabelKey: argocd.argoproj.io/instance
+    admin.enabled: true
+    exec.enabled: true
+    accounts.gitlab.enabled: true
+    timeout.reconciliation: 60s
+    accounts.gitlab: apiKey
+    accounts.devaccess.enabled: true
+    accounts.devaccess: login
+    resource.customizations: |
+      admissionregistration.k8s.io/MutatingWebhookConfiguration:
+        ignoreDifferences: |
+          jsonPointers:
+          - /webhooks/0/clientConfig/caBundle
 
 server:
-  replicas: 1
-  service:
-    type: LoadBalancer
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+  ingress:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-ipwhitelist-kaliop@kubernetescrd
+        cert-manager.io/cluster-issuer: "letsencrypt-http01"
+      ingressClassName: traefik
+
 repoServer:
-  replicas: 1
+  resources:
+    requests:controller:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+   requests:
+     cpu: 457m
+     memory: 889Mi
+   limits:
+     memory: 1000Mi
+
+dex:
+  resources: 
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+configs:
+  secret:
+    extra:
+      accounts.devaccess.password: "$2a$10$1sp60r8ris6U.jR.aAvgheh9Xy9in9PIT8ICc1AfIJfMLposItZAy"
+  params:
+    server.insecure: true
+  rbac:
+    policy.default: role:readonly
+    policy.csv: |
+      p, role:developpers, exec, create, */*, allow
+      p, role:developpers, applications, action/batch/CronJob/create-job, apps/*, allow
+      p, role:developpers, applications, get, */*, allow
+      p, role:developpers, applications, delete, apps/*, allow
+      p, role:ci, applications, sync, apps/*, allow
+      p, role:ci, applications, update, apps/*, allow
+      p, role:ci, applications, get, apps/*, allow
+      g, devaccess, role:developpers
+      g, gitlab, role:ci
+  cm:
+    create: true
+    application.instanceLabelKey: argocd.argoproj.io/instance
+    admin.enabled: true
+    exec.enabled: true
+    accounts.gitlab.enabled: true
+    timeout.reconciliation: 60s
+    accounts.gitlab: apiKey
+    accounts.devaccess.enabled: true
+    accounts.devaccess: login
+    resource.customizations: |
+      admissionregistration.k8s.io/MutatingWebhookConfiguration:
+        ignoreDifferences: |
+          jsonPointers:
+          - /webhooks/0/clientConfig/caBundle
+
+server:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+  ingress:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        cert-manager.io/cluster-issuer: "letsencrypt-http01"
+      ingressClassName: traefik
+
+repoServer:
+  resources:
+    requests:
+      cpu: 392m
+      memory: 176Mi
+    limits:
+      memory: 400Mi
 
 applicationSet:
- replicaCount: 1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+notifications:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+      cpu: 392m
+      memory: 176Mi
+    limits:
+      memory: 400Mi
+
+applicationSet:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi
+
+notifications:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 400Mi

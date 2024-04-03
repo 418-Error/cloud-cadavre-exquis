@@ -2,7 +2,8 @@ resource "scaleway_vpc" "vpc" {
   name = "vpc"
   region = var.region
   tags = [
-    "env=${terraform.workspace}"
+    "env=${terraform.workspace}",
+    "team=418erreur"
   ]
 }
 
@@ -16,6 +17,7 @@ resource "scaleway_vpc_private_network" "private_network" {
   }
 
   tags = [
-    "env=${terraform.workspace}"
+    "env=${terraform.workspace}",
+    "team=418erreur"
   ]
 }

@@ -7,7 +7,7 @@ module "kapsule_cluster" {
       size = 1
       name = "main-pool"
       node_type = "DEV1-M"
-      tags = [terraform.workspace]
+      tags = ["env=${terraform.workspace}", "team=418erreur"]
     }
     private_network_id = local.vpc_state.vpc_private_network_id
 }

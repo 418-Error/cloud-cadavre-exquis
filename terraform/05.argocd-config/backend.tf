@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "418erreur-tfstate-bucket-prod"
-    key    = "vpc.tfstate"
+    key    = "argocd.tfstate"
     region = "fr-par"
     endpoints = {
      s3: "https://s3.fr-par.scw.cloud"
@@ -13,3 +13,4 @@ terraform {
     skip_s3_checksum = true
   }
 }
+

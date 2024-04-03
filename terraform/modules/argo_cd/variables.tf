@@ -1,19 +1,12 @@
-variable cluster_host {
-    type = string
-    description = "Cluster host"
+variable "config_file" {
+  description = "The path to the kubeconfig file"
+  type = string
 }
-
-variable cluster_ca_certificate {
-    type = string
-    description = "Cluster CA certificate"
+variable "argocd_host" {
+  description = "value of the argocd host"
+  type = string
 }
-
-variable cluster_client_certificate {
-    type = string
-    description = "Cluster client certificate"
-}
-
-variable cluster_client_key {
-    type = string
-    description = "Cluster client key"
+variable "argocd_secret_tls" {
+  description = "value of the argocd secret tls"
+  type = string
 }
