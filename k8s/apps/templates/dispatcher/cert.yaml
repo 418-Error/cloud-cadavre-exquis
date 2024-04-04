@@ -4,7 +4,7 @@ metadata:
   name: cert-dispatcher
   namespace: {{ .Release.Namespace }}
 spec:
-  secretName: dispatcher-tls-secret
+  secretName: letsencrypt-prod
   issuerRef:
       name: letsencrypt-prod
       kind: ClusterIssuer
