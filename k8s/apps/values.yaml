@@ -51,10 +51,9 @@ externalSecrets:
       target:
         name: "infrastructure-postgresql-postgres-creds"
         creationPolicy: Owner
-      dataFrom:
-      - extract:
-          conversionStrategy: Default
-          decodingStrategy: None
+      data:
+      - secretKey: password
+        remoteRef:
           key: id:f640d5de-440a-412f-8805-9eb70469eaf8
           version: latest_enabled
 
