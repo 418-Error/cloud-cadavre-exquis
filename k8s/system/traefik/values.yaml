@@ -1,0 +1,79 @@
+# Traefik Helm values use in main.tf
+image:
+  name: traefik
+  tag: 2.9.8
+
+deployment:
+  kind: DaemonSet
+ 
+
+providers:
+  kubernetesCRD:
+    enabled: true
+    allowCrossNamespace: true
+    allowExternalNameServices: true
+
+  kubernetesIngress:
+    enabled: true
+    allowExternalNameServices: true
+    publishedService:
+      enabled: true
+
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+
+ports:
+  web:
+    redirectTo: websecure
+
+globalArguments:
+  - "--global.checknewversion=false"
+  - "--global.sendanonymoususage=false"
+
+additionalArguments:
+  - "--log.level=INFO"
+  - "--entrypoints.traefik.address=:9000/tcp"
+  - "--entrypoints.web.address=:8000/tcp"
+  - "--entrypoints.websecure.address=:8443/tcp"
+  - "--api.dashboard=true"
+  - "--ping=true"
+  - "--providers.kubernetescrd"
+  - "--providers.kubernetesingress"
+  - "--entrypoints.websecure.http.tls=true"
+  - "--entryPoints.web.proxyProtocol.insecure"
+  - "--entryPoints.websecure.proxyProtocol.insecure"
+
+logs:
+  access:
+    enabled: true
+
+service:
+  annotations:
+    service.beta.kubernetes.io/scw-loadbalancer-health-check-delay: "10s"
+    service.beta.kubernetes.io/scw-loadbalancer-proxy-protocol-v2: "true"
+    service.beta.kubernetes.io/scw-loadbalancer-use-hostname: "true"
+  type: LoadBalancer
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "50Mi"
+  limits:
+    cpu: "300m"
+    memory: "100Mi"
+
+tlsOptions:
+  default:
+    minVersion: VersionTLS12
+    preferServerCipherSuites: true
+    cipherSuites:
+      - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+      - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+    curvePreferences:
+      - secp521r1
+      - secp384r1
