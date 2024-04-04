@@ -25,3 +25,10 @@ variable "vpc_private_network_id" {
   description = "The ID of the private network to use for the database"
   type        = string
 }
+
+variable "database_name" {
+  description = "The name of the database to create"
+  type        = string
+  default     = "cloud-cadavre-exquis"
+  
+}

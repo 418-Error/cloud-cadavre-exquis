@@ -1,6 +1,6 @@
 resource "scaleway_rdb_database" "database" {
   instance_id    = scaleway_rdb_instance.instance.id
-  name           = "database"
+  name           = var.database_name
   region         = var.region
 }
 
