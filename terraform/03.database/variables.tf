@@ -1,5 +1,6 @@
 variable "user_name" {
   description = "The username to use for the database"
+  default = "postgres_user"
   type        = string
 }
 

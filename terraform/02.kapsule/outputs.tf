@@ -13,6 +13,11 @@ output "host" {
   sensitive = true
 }
 
+output "k8s_id" {
+  value     = module.kapsule_cluster.k8s_id
+  sensitive = false
+}
+
 output "cluster_ca_certificate" {
   value     = module.kapsule_cluster.cluster_ca_certificate
   sensitive = true

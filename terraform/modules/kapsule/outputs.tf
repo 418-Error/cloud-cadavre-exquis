@@ -17,3 +17,7 @@ output "cluster_ca_certificate" {
 output "token" {
     value = scaleway_k8s_cluster.cluster.kubeconfig[0]["token"]
 } 
+
+output "k8s_id" {
+  value = scaleway_k8s_cluster.cluster.id
+}

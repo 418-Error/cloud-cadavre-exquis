@@ -56,7 +56,7 @@ externalSecrets:
       data:
       - secretKey: password
         remoteRef:
-          key: id:f640d5de-440a-412f-8805-9eb70469eaf8
+          key: name:db-password
           version: latest_enabled
 
 scaleway:
