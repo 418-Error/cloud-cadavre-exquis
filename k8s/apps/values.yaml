@@ -57,3 +57,6 @@ externalSecrets:
           decodingStrategy: None
           key: f640d5de-440a-412f-8805-9eb70469eaf8
 
+scaleway:
+  region: "fr-par"
+  projectId: "f2b23448-413a-4d36-a571-114588f03132"
