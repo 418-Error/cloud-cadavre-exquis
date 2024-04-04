@@ -17,7 +17,7 @@ spec:
   source:
     path: k8s/apps
     repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-    targetRevision: master
+    targetRevision: HEAD
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -44,7 +44,7 @@ spec:
         valueFiles:
           - $values/k8s/system/external-secrets/values.yaml
     - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: master
+      targetRevision: HEAD
       ref: values
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -72,7 +72,7 @@ spec:
         valueFiles:
           - $values/k8s/system/traefik/values.yaml
     - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: master
+      targetRevision: HEAD
       ref: values
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -100,5 +100,5 @@ spec:
         valueFiles:
           - $values/k8s/system/cert-manager/values.yaml
     - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: master
+      targetRevision: HEAD
       ref: values
