@@ -55,7 +55,8 @@ externalSecrets:
       - extract:
           conversionStrategy: Default
           decodingStrategy: None
-          key: f640d5de-440a-412f-8805-9eb70469eaf8
+          key: id:f640d5de-440a-412f-8805-9eb70469eaf8
+          version: latest_enabled
 
 scaleway:
   region: "fr-par"
