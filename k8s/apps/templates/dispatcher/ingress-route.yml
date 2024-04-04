@@ -14,3 +14,8 @@ spec:
       kind: Service
       namespace: {{ .Release.Namespace }}
       port: 80
+  tls:
+    certResolver: {{ required "Value certResolver is required" .Values.dispatcher.certResolver }}
+    domains:
+      - main: {{ required "Value domain is required" .Values.dispatcher.domain }}
+        sans: []
