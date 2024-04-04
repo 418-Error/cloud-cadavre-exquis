@@ -19,8 +19,9 @@ register:
     tag: 1.0-SNAPSHOT
   postgresql:
     host: *postgresqlCredentialsHost
-    credentialsSecretName: *postgresqlCredentialsSecret
+    credentialsSecretName: "infrastructure-postgresql-postgres-creds"
     databaseName: "register"
+    username: "postgres_user"
 
 subject:
   replica: 2
