@@ -20,3 +20,4 @@ spec:
     - https://github.com/418-Error/cloud-cadavre-exquis
     - https://charts.external-secrets.io
     - https://helm.traefik.io/traefik
+    - https://charts.jetstack.io

@@ -17,7 +17,7 @@ spec:
   source:
     path: k8s/apps
     repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-    targetRevision: feat/scaleway
+    targetRevision: master
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -44,7 +44,7 @@ spec:
         valueFiles:
           - $values/k8s/system/external-secrets/values.yaml
     - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: feat/scaleway
+      targetRevision: master
       ref: values
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -72,6 +72,33 @@ spec:
         valueFiles:
           - $values/k8s/system/traefik/values.yaml
     - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: feat/scaleway
+      targetRevision: master
       ref: values
-
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/instance: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: system-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  project: cloud-cadavre-exquis
+  sources:
+    - chart: cert-manager
+      repoURL: https://charts.jetstack.io
+      targetRevision: 1.14.4
+      helm:
+        releaseName: cert-manager
+        valueFiles:
+          - $values/k8s/system/cert-manager/values.yaml
+    - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
+      targetRevision: master
+      ref: values

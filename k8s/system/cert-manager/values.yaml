@@ -1,0 +1,19 @@
+installCRDs: true
+
+ingressShim:
+  defaultIssuerName: "letsencrypt-prod"
+  defaultIssuerKind: "ClusterIssuer"
+
+global:
+  podSecurityPolicy:
+    enabled: false
+
+webhook:
+  enabled: true
+
+prometheus:
+  enabled: true
+
+extraArgs:
+  cert-manager:
+    logLevel: "normal"
