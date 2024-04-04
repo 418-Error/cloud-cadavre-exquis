@@ -23,7 +23,7 @@ spec:
           image: "{{ .Values.dispatcher.image.repository }}/{{ .Values.dispatcher.image.name}}:{{ .Values.dispatcher.image.tag}}"
           env:
             - name: REGISTER_URLS
-              value: http://apps-register
+              value: "http://{{ .Release.Name }}-register"
           ports:
             - containerPort: 8080
           livenessProbe:
