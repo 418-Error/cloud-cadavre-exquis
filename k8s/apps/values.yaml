@@ -18,9 +18,9 @@ register:
     name: cloud-cadavre-exquis-register
     tag: 1.0-SNAPSHOT
   postgresql:
-    host: *postgresqlCredentialsHost
+    host: 
     credentialsSecretName: "infrastructure-postgresql-postgres-creds"
-    databaseName: "register"
+    databaseName: "rdb"
     username: "postgres_user"
 
 subject:
