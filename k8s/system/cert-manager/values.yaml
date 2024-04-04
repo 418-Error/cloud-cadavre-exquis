@@ -10,10 +10,3 @@ global:
 
 webhook:
   enabled: true
-
-prometheus:
-  enabled: true
-
-extraArgs:
-  cert-manager:
-    logLevel: "normal"
