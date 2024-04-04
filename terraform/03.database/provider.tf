@@ -12,3 +12,7 @@ provider "scaleway" {
   secret_key = var.secret_key
   project_id = var.project_id
 }
+
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}

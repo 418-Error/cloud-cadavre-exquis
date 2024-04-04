@@ -23,13 +23,19 @@ spec:
           image: "{{ .Values.register.image.repository }}/{{ .Values.register.image.name}}:{{ .Values.register.image.tag}}"
           env:
             - name: POSTGRESQL_ADDON_HOST
-              value: "{{ .Values.register.postgresql.host }}"
+              valueFrom:
+                configMapKeyRef:
+                  name: "database-configmap"
+                  key: host
             - name: POSTGRESQL_ADDON_PORT
               value: "5432"
             - name: POSTGRESQL_ADDON_DB
               value: {{ .Values.register.postgresql.databaseName }}
             - name: POSTGRESQL_ADDON_USER
-              value: {{ .Values.register.postgresql.username }}
+              valueFrom:
+                configMapKeyRef:
+                  name: "database-configmap"
+                  key: username
             - name: POSTGRESQL_ADDON_PASSWORD
               valueFrom:
                 secretKeyRef:
