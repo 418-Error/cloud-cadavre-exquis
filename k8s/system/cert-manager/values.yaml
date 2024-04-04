@@ -10,3 +10,22 @@ global:
 
 webhook:
   enabled: true
+
+prometheus:
+  enabled: true
+
+extraArgs:
+  cert-manager:
+    logLevel: "normal"
+
+clustersIssuers:
+  - name: "letsencrypt-prod"
+    acme:
+      email: "nathael.bonnal@oomade.com"
+      server: "https://acme-v02.api.letsencrypt.org/directory"
+      privateKeySecretRef:
+        name: "letsencrypt-lab"
+      solvers:
+        - http01:
+            ingress:
+              class: "traefik"
