@@ -45,7 +45,7 @@ adjective:
 
 externalSecrets:
   - name: "infrastructure-postgresql-postgres-creds"
-    secretStoreRef: scaleway-sm-secret-store-developer
+    secretStoreRef: secret-store
     refreshInverval: 60s
     secret:
       target:
