@@ -11,13 +11,6 @@ global:
 webhook:
   enabled: true
 
-prometheus:
-  enabled: true
-
-extraArgs:
-  cert-manager:
-    logLevel: "normal"
-
 clustersIssuers:
   - name: "letsencrypt-prod"
     acme:
