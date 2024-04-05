@@ -3,3 +3,17 @@ scaleway:
 
 dispatcher:
   domain: cadavre.hackthecrous.com
+
+externalSecrets:
+  - name: "infrastructure-postgresql-postgres-creds"
+    secretStoreRef: secret-store
+    refreshInverval: 60s
+    secret:
+      target:
+        name: "infrastructure-postgresql-postgres-creds"
+        creationPolicy: Owner
+      data:
+      - secretKey: password
+        remoteRef:
+          key: name:db-password-prod
+          version: latest_enabled

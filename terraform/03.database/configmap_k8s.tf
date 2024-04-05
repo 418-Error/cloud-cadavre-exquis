@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "configmap" {
   }
 }
 
-resource "kubernetes_secret" "secret" {
+resource "kubernetes_secret" "secret" { //could be replaced by a service account
   metadata {
     name      = "scwsm-secret"
     namespace = "cloud-cadavre-exquis"

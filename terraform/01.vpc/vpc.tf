@@ -1,5 +1,5 @@
 resource "scaleway_vpc" "vpc" {
-  name = "vpc"
+  name = "vpc_${terraform.workspace}"
   region = var.region
   tags = [
     "env=${terraform.workspace}",
@@ -8,7 +8,7 @@ resource "scaleway_vpc" "vpc" {
 }
 
 resource "scaleway_vpc_private_network" "private_network" {
-  name = "vpc_subnet"
+  name = "vpc_subnet_${terraform.workspace}"
   vpc_id = scaleway_vpc.vpc.id
   region = var.region
 

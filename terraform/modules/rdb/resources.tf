@@ -10,7 +10,7 @@ resource "random_password" "db_password" {
 }
 
 resource "scaleway_secret" "db_password" {
-  name        = "db-password"
+  name        = "db-password-${terraform.workspace}"
   description = "database password"
   tags        = ["env=${terraform.workspace}"]
 }

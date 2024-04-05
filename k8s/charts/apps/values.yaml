@@ -8,7 +8,6 @@ dispatcher:
     repository: docker.io/fteychene
     name: cloud-cadavre-exquis-dispatcher
     tag: 1.0-SNAPSHOT
-  domain: cadavre.hackthecrous.com
   certResolver: cert-dispatcher
 
 register:
@@ -42,20 +41,6 @@ adjective:
     repository: docker.io/fteychene
     name: cloud-cadavre-exquis-provider
     tag: 1.0-SNAPSHOT
-
-externalSecrets:
-  - name: "infrastructure-postgresql-postgres-creds"
-    secretStoreRef: secret-store
-    refreshInverval: 60s
-    secret:
-      target:
-        name: "infrastructure-postgresql-postgres-creds"
-        creationPolicy: Owner
-      data:
-      - secretKey: password
-        remoteRef:
-          key: name:db-password
-          version: latest_enabled
 
 scaleway:
   region: "fr-par"
