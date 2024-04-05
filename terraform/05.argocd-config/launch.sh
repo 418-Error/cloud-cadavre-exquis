@@ -2,4 +2,4 @@
 
 set -e
 
-kustomize build ./applications | kubectl apply -f -
+kustomize build ./applications/prod | kubectl apply -f -
