@@ -8,10 +8,8 @@ dispatcher:
     repository: docker.io/fteychene
     name: cloud-cadavre-exquis-dispatcher
     tag: 1.0-SNAPSHOT
-  domain: cadavre.bonnal.cloud
+  domain: cadavre.hackthecrous.com
   certResolver: cert-dispatcher
-
-
 
 register:
   image:

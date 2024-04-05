@@ -1,6 +1,0 @@
-postgresql:
-  architecture: replication
-  auth:
-    postgresUsername: 'postgres'
-    postgresPassword: 'postgres'
-    replicationPassword: 'postgres'

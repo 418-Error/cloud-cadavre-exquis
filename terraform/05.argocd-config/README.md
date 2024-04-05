@@ -42,3 +42,4 @@ terraform apply
 ./launch.sh
 ```
 It will create the argocd applications and install all the CRDs.
+7. Finally make sure that all your resources have been created by going to the address http://localhost:8080. Also you can go to 

@@ -1,104 +1,41 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: appofapps-cadavre-exquis
+  name: system-apps
   namespace: argocd
   labels:
     argocd.argoproj.io/instance: argocd
 spec:
   destination:
     name: in-cluster
-    namespace: cloud-cadavre-exquis
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
   project: cloud-cadavre-exquis
   source:
-    path: k8s/apps
+    path: k8s/prod/system
     repoURL: https://github.com/418-Error/cloud-cadavre-exquis
     targetRevision: HEAD
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets
+  name: cadavre
   namespace: argocd
   labels:
     argocd.argoproj.io/instance: argocd
 spec:
   destination:
     name: in-cluster
-    namespace: system-apps
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
   project: cloud-cadavre-exquis
-  sources:
-    - chart: external-secrets
-      repoURL: https://charts.external-secrets.io
-      targetRevision: 0.9.7
-      helm:
-        releaseName: external-secrets
-        valueFiles:
-          - $values/k8s/system/external-secrets/values.yaml
-    - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: HEAD
-      ref: values
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: traefik
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/instance: argocd
-spec:
-  destination:
-    name: in-cluster
-    namespace: system-apps
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-  project: cloud-cadavre-exquis
-  sources:
-    - chart: traefik
-      repoURL: https://helm.traefik.io/traefik
-      targetRevision: 20.8.0
-      helm:
-        releaseName: traefik
-        valueFiles:
-          - $values/k8s/system/traefik/values.yaml
-    - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: HEAD
-      ref: values
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: cert-manager
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/instance: argocd
-spec:
-  destination:
-    name: in-cluster
-    namespace: system-apps
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-  project: cloud-cadavre-exquis
-  sources:
-    - chart: cert-manager
-      repoURL: https://charts.jetstack.io
-      targetRevision: 1.14.4
-      helm:
-        releaseName: cert-manager
-        valueFiles:
-          - $values/k8s/system/cert-manager/values.yaml
-    - repoURL: https://github.com/418-Error/cloud-cadavre-exquis
-      targetRevision: HEAD
-      ref: values
+  source:
+    path: k8s/prod/apps
+    repoURL: https://github.com/418-Error/cloud-cadavre-exquis
+    targetRevision: HEAD

@@ -2,8 +2,6 @@
 This run creates argocd
 ## Prerequisites :
 - you have to launch the `../03.database` run before.
-- you will need the argocd cli.
-- you will need the `kubectl` cli.
 ## Launch the run
 1. In your terminal launch the following commands :
 ```bash

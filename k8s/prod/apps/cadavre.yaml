@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: appofapps-cadavre-exquis
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/instance: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: cloud-cadavre-exquis
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  project: cloud-cadavre-exquis
+  source:
+    path: k8s/charts/apps
+    repoURL: https://github.com/418-Error/cloud-cadavre-exquis
+    targetRevision: HEAD
+    helm:
+      releaseName: cloud-cadavre-exquis
+      valueFiles:
+        - $values/k8s/charts/apps/values.yaml
+        - $values/k8s/charts/apps/prod.yaml
+        
